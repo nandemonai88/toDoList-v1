@@ -1,0 +1,32 @@
+<!-- Includes all of the content in header.ejs -->
+<%- include("header"); -%>
+    <div class="box" id="heading">
+      <!-- 
+        ・EJS markers are noted by < % markerName % > (without spaces)
+        ・< % = % > === outputs the value into the template (HTML escaped) 
+        ・< % % > === scriptlet tag, for control-flow, no output; cannot include html elements; enclose around javascript elements to exclude html for everything to function;
+          work on line-by-line basis, so even if there are multiple lines of sequential javascript, each line must have its own opening and close tags
+      -->
+      <h1><%= listTitle %></h1>
+    </div>
+    <div class="box">
+      <!-- Creates a new list item for each new item the user enters in the form input -->
+      <% for (var i = 0; i < newListItems.length; i++){ %>
+      <div class="item">
+        <input type="checkbox" />
+        <p><%= newListItems[i] %></p>
+      </div>
+      <% } %>
+
+      <form action="/" class="item" method="POST">
+        <input
+          autocomplete="off"
+          type="text"
+          name="newItem"
+          placeholder="New Item"
+        />
+        <button type="submit" name="list" value=<%= listTitle %>>+</button>
+      </form>
+    </div>
+<!-- Includes all of the content in footer.ejs -->
+<%- include("footer"); -%>
